@@ -6,3 +6,13 @@
   display: flex;
   justify-content: center;
 }
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+  justify-content: right;
+}
+
+nav li:first-child {
+  margin-right: auto;
+}
