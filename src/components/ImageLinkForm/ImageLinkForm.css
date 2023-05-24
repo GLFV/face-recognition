@@ -1,0 +1,21 @@
+.face-detection-modal {
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  position: fixed; 
+  height: 100%; 
+  width: 100%; 
+  top: 0; 
+  left: 0; 
+  background-color:rgba(148, 202, 10, 0.3);
+
+}
+
+.form {
+	width: 700px;
+	background-size: 40px 60px;
+}
+.for-button{
+	padding: 200px;
+}

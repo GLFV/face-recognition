@@ -1,6 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { api } from '../../api';
+import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+  const [authorized, setAuthorized] = useState(false);
+
+  const handleSubmit = async () => {
+    try {
+      const response = await api.post('/sign-up', {
+        email,
+        password,
+        username,
+      });
+
+      const user = response.data;
+      if (typeof user !== 'object') {
+        throw new Error(user);
+      } else {
+        setAuthorized(true);
+        navigate('/profile');
+      }
+    } catch (error) {
+      alert('An error had occurred:\n' + error.message);
+    }
+  };
+
   return (
     <div>
       <article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 center shadow-5">
@@ -14,6 +43,7 @@ export default function Register() {
                 type="text"
                 name="name"
                 id="name"
+                onChange={event => setUsername(event.target.value)}
               />
             </div>
             <div className="mt3">
@@ -23,6 +53,7 @@ export default function Register() {
                 type="email"
                 name="email-address"
                 id="email-address"
+                onChange={event => setEmail(event.target.value)}
               />
             </div>
             <div className="mv3">
@@ -32,13 +63,23 @@ export default function Register() {
                 type="password"
                 name="password"
                 id="password"
+                onChange={event => setPassword(event.target.value)}
               />
             </div>
           </fieldset>
-          <div className="">
-            <button className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">
-              Register{' '}
-            </button>
+          <div className="container center">
+            <div className="">
+              <NavLink
+                className="b ph3 pv2 input-reset no-color-change no-underline ba b--black bg-transparent grow pointer f6 dib pointer left"
+                type="submit"
+                to={authorized ? '/profile' : '/Register'}
+                value="Register"
+                onClick={handleSubmit}
+              >
+                {' '}
+                Register{' '}
+              </NavLink>
+            </div>
           </div>
         </main>
       </article>

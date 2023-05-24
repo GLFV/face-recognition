@@ -4,6 +4,7 @@ import Home from './components/Home/Home.js';
 import Logo from './components/Logo/Logo.js';
 import SignIn from './components/SignIn/SignIn.js';
 import Register from './components/Register/Register.js';
+import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<ImageLinkForm />} />
       </Routes>
     </BrowserRouter>
   );
